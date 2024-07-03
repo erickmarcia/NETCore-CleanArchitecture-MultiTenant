@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
+    <Compile Remove="DataBase\Catalogos\Commands\**" />
+    <Compile Remove="DataBase\Catalogos\Interfaces\**" />
+    <EmbeddedResource Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
+    <EmbeddedResource Remove="DataBase\Catalogos\Commands\**" />
+    <EmbeddedResource Remove="DataBase\Catalogos\Interfaces\**" />
+    <None Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
+    <None Remove="DataBase\Catalogos\Commands\**" />
+    <None Remove="DataBase\Catalogos\Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+   
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
+   
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiTenantService.Common\MultiTenantService.Common.csproj" />
+    <ProjectReference Include="..\MultiTenantService.Domain\MultiTenantService.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DataBase\Comentario\Queries\" />
+  </ItemGroup>
+</Project>

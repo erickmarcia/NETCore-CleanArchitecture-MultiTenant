@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="Entities\Organizacion\" />
+    <Folder Include="Entities\Productos\" />
+    <Folder Include="Entities\Usuarios\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="8.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultiTenantService.Common\MultiTenantService.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\Organizacion\" />
+    <None Remove="Entities\Productos\" />
+    <None Remove="Entities\Usuarios\" />
+  </ItemGroup>
+</Project>

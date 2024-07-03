@@ -1,0 +1,6 @@
+@MultiTenantService.Api_HostAddress = http://localhost:5100
+
+GET {{MultiTenantService.Api_HostAddress}}/api/
+Accept: application/json
+
+###
