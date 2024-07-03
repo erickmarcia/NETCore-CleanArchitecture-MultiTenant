@@ -24,6 +24,8 @@
     <Folder Include="Configuration\Organizacion\" />
     <Folder Include="Configuration\Productos\" />
     <Folder Include="Configuration\Usuarios\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Migrations\PostgreSQL\" />
   </ItemGroup>
 
   <ItemGroup>
