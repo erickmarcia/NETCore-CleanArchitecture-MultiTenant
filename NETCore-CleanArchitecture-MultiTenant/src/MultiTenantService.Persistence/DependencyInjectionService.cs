@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MultiTenantService.Application.DataBase;
-using MultiTenantService.Application.Feactures.Auth;
 using MultiTenantService.Persistence.DataBase;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
@@ -43,15 +42,15 @@ namespace MultiTenantService.Persistence
                     break;
 
                 case "MySQL":
-                                   services.AddDbContext<TContext>(options =>
-                                       options.UseMySql(connectionString, 
+                     services.AddDbContext<TContext>(options =>
+                       options.UseMySql(connectionString,
                                        ServerVersion.AutoDetect(connectionString),
                                         mySqlOptions =>
                                         {
                                             mySqlOptions.SchemaBehavior(MySqlSchemaBehavior.Ignore);
                                         }
                                        ));
-                  break;
+                    break;
 
            
                 default:

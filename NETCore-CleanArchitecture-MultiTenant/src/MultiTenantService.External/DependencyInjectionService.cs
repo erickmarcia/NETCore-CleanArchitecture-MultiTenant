@@ -45,14 +45,6 @@ namespace MultiTenantService.External
                         {
                             OnMessageReceived = context =>
                             {
-                                //var accessToken = context.Request.Query["accessToken"];
-                                //var path = context.HttpContext.Request.Path;
-                                //if (!string.IsNullOrEmpty(accessToken)
-                                //    && path.StartsWithSegments("/singalr-hub"))
-                                //{
-                                //    context.Token = accessToken;
-                                //}
-                                
                                 return Task.CompletedTask;
                             }
                         };

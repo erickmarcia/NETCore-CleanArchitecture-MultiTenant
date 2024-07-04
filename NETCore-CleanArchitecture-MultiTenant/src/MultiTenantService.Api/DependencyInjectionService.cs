@@ -16,7 +16,7 @@ namespace MultiTenantService.Api
                 {
                     Version = "v1",
                     Title = "NETCore-CleanArchitecture-MultiTenantService API",
-                    Description = "Innova FAMA"
+                    Description = "NETCore-CleanArchitecture-MultiTenantService API"
                 });
 
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -44,10 +44,8 @@ namespace MultiTenantService.Api
                      }
                 });
 
-
                 var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.Xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, fileName));
-
                 
             });
 

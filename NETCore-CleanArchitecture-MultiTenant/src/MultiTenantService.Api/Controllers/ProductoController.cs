@@ -1,27 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiTenantService.Application.DataBase.Productos.Commands.CrearProducto;
+using MultiTenantService.Application.DataBase.Productos.Queries.ObtenerProductosPorSlug;
 using MultiTenantService.Application.Exceptions;
 
 
 namespace MultiTenantService.Api.Controllers
 {
-    [Route("api/producto")]
+    [Route("{tenantSlug}/producto")]
     [ApiController]
     [TypeFilter(typeof(ExceptionManager))]
     public class ProductoController : Controller
-    {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+    {     
+        [HttpGet("")]
+        public async Task<IActionResult> ObtenerProductos(
+        [FromServices] IObtenerProductosPorSlug obtenerProductoPorTenantSlug)
         {
-            return new string[] { "value1", "value2" };
-        }
+            var slugTenant = HttpContext.Items["TenantSlug"]?.ToString();
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            var respuesta = await obtenerProductoPorTenantSlug.Execute(slugTenant);
+
+            if (respuesta.Success)
+            {
+                return StatusCode(StatusCodes.Status200OK, respuesta);
+            }
+            else
+            {
+                return StatusCode(respuesta.CodeId, respuesta);
+            }
         }
 
         // POST api/values
@@ -31,7 +36,8 @@ namespace MultiTenantService.Api.Controllers
          [FromServices] ICrearProducto crear
          )
         {
-            var data = await crear.Execute(modelo);
+            var slugTenant = HttpContext.Items["TenantSlug"]?.ToString();
+            var data = await crear.Execute(modelo, slugTenant);
             if (data.Success)
             {
                 return StatusCode(StatusCodes.Status201Created, data);
@@ -43,18 +49,6 @@ namespace MultiTenantService.Api.Controllers
 
         }
 
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
 

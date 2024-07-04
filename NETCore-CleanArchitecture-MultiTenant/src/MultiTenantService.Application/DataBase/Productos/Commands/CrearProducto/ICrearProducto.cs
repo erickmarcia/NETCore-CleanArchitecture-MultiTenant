@@ -4,6 +4,6 @@ namespace MultiTenantService.Application.DataBase.Productos.Commands.CrearProduc
 {
     public interface ICrearProducto
     {
-        Task<BaseResponseModel> Execute(CrearProductoModel model);
+        Task<BaseResponseModel> Execute(CrearProductoModel model, string slugTenant);
     }
 }

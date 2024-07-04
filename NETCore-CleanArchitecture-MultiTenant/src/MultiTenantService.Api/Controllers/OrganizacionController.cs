@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrganizacion;
+using MultiTenantService.Application.DataBase.Organizacion.Queries.ObtenerTodosLasOrganizaciones;
 using MultiTenantService.Application.Exceptions;
 
 namespace MultiTenantService.Api.Controllers
@@ -9,18 +10,20 @@ namespace MultiTenantService.Api.Controllers
     [TypeFilter(typeof(ExceptionManager))]
     public class OrganizacionController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        [HttpGet("")]
+        public async Task<IActionResult> ObtenerOrganizaciones(
+         [FromServices] IObtenerTodosLasOrganizaciones obtenerTodosLasOrganizaciones)
+        {       
+            var respuesta = await obtenerTodosLasOrganizaciones.Execute();
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            if (respuesta.Success)
+            {
+                return StatusCode(StatusCodes.Status200OK, respuesta);
+            }
+            else
+            {
+                return StatusCode(respuesta.CodeId, respuesta);
+            }
         }
 
         // POST api/values
@@ -42,17 +45,6 @@ namespace MultiTenantService.Api.Controllers
 
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
 

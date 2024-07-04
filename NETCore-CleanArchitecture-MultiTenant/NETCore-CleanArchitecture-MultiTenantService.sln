@@ -15,21 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{34CDD8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E34156C3-A888-404F-8335-C1F1A4361E48}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{C13B07FC-E62A-4FC3-800D-F88A09CDA86A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.Api", "src\MultiTenantService.Api\MultiTenantService.Api.csproj", "{B1811679-F516-4C3E-8C93-09B6677826CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.Api", "src\MultiTenantService.Api\MultiTenantService.Api.csproj", "{B1811679-F516-4C3E-8C93-09B6677826CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.Common", "src\MultiTenantService.Common\MultiTenantService.Common.csproj", "{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.ApiGateways", "src\MultiTenantService.ApiGateways\MultiTenantService.ApiGateways.csproj", "{25526A99-D329-449D-8A28-4C08C2E07E9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.Application", "src\MultiTenantService.Application\MultiTenantService.Application.csproj", "{6F99E895-51D1-4931-8DCB-2444FC0E671A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.Common", "src\MultiTenantService.Common\MultiTenantService.Common.csproj", "{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.Domain", "src\MultiTenantService.Domain\MultiTenantService.Domain.csproj", "{75946FB1-B7AF-4146-BB4E-845F15C62124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.Application", "src\MultiTenantService.Application\MultiTenantService.Application.csproj", "{6F99E895-51D1-4931-8DCB-2444FC0E671A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.External", "src\MultiTenantService.External\MultiTenantService.External.csproj", "{0FA14D30-0DE3-41D6-915F-945E00215788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.Domain", "src\MultiTenantService.Domain\MultiTenantService.Domain.csproj", "{75946FB1-B7AF-4146-BB4E-845F15C62124}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.External", "src\MultiTenantService.External\MultiTenantService.External.csproj", "{0FA14D30-0DE3-41D6-915F-945E00215788}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantService.Persistence", "src\MultiTenantService.Persistence\MultiTenantService.Persistence.csproj", "{1283CEFC-2A6E-4636-A9DC-9E2A91703C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantService.Persistence", "src\MultiTenantService.Persistence\MultiTenantService.Persistence.csproj", "{1283CEFC-2A6E-4636-A9DC-9E2A91703C62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +37,6 @@ Global
 		{B1811679-F516-4C3E-8C93-09B6677826CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1811679-F516-4C3E-8C93-09B6677826CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1811679-F516-4C3E-8C93-09B6677826CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25526A99-D329-449D-8A28-4C08C2E07E9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25526A99-D329-449D-8A28-4C08C2E07E9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25526A99-D329-449D-8A28-4C08C2E07E9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25526A99-D329-449D-8A28-4C08C2E07E9F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,9 +67,7 @@ Global
 		{AC204F7E-714B-4D5B-B9B5-4E1EAB3D9B49} = {49D2DC3A-A2BA-4269-ACBE-D8A968AD0EC1}
 		{34CDD823-6A31-49A8-A84A-580CF21DEEC1} = {49D2DC3A-A2BA-4269-ACBE-D8A968AD0EC1}
 		{E34156C3-A888-404F-8335-C1F1A4361E48} = {49D2DC3A-A2BA-4269-ACBE-D8A968AD0EC1}
-		{C13B07FC-E62A-4FC3-800D-F88A09CDA86A} = {49D2DC3A-A2BA-4269-ACBE-D8A968AD0EC1}
 		{B1811679-F516-4C3E-8C93-09B6677826CA} = {12D9750B-3367-4833-BF47-37549889BFB1}
-		{25526A99-D329-449D-8A28-4C08C2E07E9F} = {C13B07FC-E62A-4FC3-800D-F88A09CDA86A}
 		{B1F539E1-4D5E-42B4-B89E-66E6D27E9C15} = {34CDD823-6A31-49A8-A84A-580CF21DEEC1}
 		{6F99E895-51D1-4931-8DCB-2444FC0E671A} = {F131B09F-1CE3-46C1-8D91-9410E7F8F673}
 		{75946FB1-B7AF-4146-BB4E-845F15C62124} = {F131B09F-1CE3-46C1-8D91-9410E7F8F673}

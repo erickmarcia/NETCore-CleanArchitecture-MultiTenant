@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using MultiTenantService.Application.DataBase.Organizacion.Queries.ObtenerOrganizacionIdPorSlug;
 using MultiTenantService.Application.Exceptions;
 using MultiTenantService.Application.Feactures.Auth;
 using MultiTenantService.Common;
@@ -12,23 +13,30 @@ namespace MultiTenantService.Application.DataBase.Productos.Commands.CrearProduc
     {
         private readonly IProductoDbContext _dataBaseService;
         private readonly IMapper _mapper;
-        private readonly IBaseService _baseService;
+        private readonly IObtenerOrganizacionIdPorSlug _organizationService;
 
         public CrearProducto(IProductoDbContext dataBaseService, IMapper mapper,
-            IBaseService baseService)
+            IObtenerOrganizacionIdPorSlug organizationService)
         {
             _dataBaseService = dataBaseService;
             _mapper = mapper;
-            _baseService = baseService;
+            _organizationService = organizationService;
         }
 
-        public async Task<BaseResponseModel> Execute(CrearProductoModel modelo)
+        public async Task<BaseResponseModel> Execute(CrearProductoModel modelo, string slugTenant)
         {
             BaseResponseModel mensaje = new BaseResponseModel();
             List<object> errores = new List<object>();
 
             // Obtener el UsuarioId del usuario autenticado
             // var usuarioId = _baseService.ObtenerIdUsuarioActual();
+
+            var organizationId = await _organizationService.ObtenerOrganizacionIdPorSlugAsync(slugTenant);
+
+            if (organizationId == null)
+            {
+                errores.Add(new CustomValidationFailure(Constants.Productos, "slug", string.Format(ResponseMessages.NoDataFound.Message, "TenantSlug: " + slugTenant), slugTenant));
+            }
 
             var producto = await _dataBaseService.Producto.AsNoTracking().FirstOrDefaultAsync(x => x.Nombre == modelo.Nombre);
             if (producto != null)
@@ -46,7 +54,7 @@ namespace MultiTenantService.Application.DataBase.Productos.Commands.CrearProduc
             }
 
             var entity = _mapper.Map<ProductoEntity>(modelo);
-            
+            entity.OrganizacionId = organizationId;
             await _dataBaseService.Producto.AddAsync(entity);
 
            

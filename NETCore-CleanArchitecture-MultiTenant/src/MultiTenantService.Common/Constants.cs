@@ -2,7 +2,7 @@
 {
     public class Constants
     {
-        public const string Productos = "en Productos";
+        public const string Productos = "Productos";
         public const string Organizacion = "Organizacion";
       
 

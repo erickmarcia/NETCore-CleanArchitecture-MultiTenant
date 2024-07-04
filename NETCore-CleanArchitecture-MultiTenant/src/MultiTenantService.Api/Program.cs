@@ -1,5 +1,7 @@
 using MultiTenantService.Api;
+using MultiTenantService.Api.Middlewares;
 using MultiTenantService.Application;
+using MultiTenantService.Application.External.Services;
 using MultiTenantService.Common;
 using MultiTenantService.External;
 using MultiTenantService.Persistence;
@@ -15,10 +17,13 @@ builder.Services
     .AddExternal(builder.Configuration)
     .AddPersistence(builder.Configuration);
 
+
 builder.Services.AddControllers();
 
 builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpContextAccessor(); 
+builder.Services.AddScoped<TenantService>();
 
 builder.Logging.AddDebug();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
@@ -84,6 +89,8 @@ app.Use(async (context, next) =>
     }
     await next.Invoke();
 });
+
+app.UseMiddleware<TenantMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

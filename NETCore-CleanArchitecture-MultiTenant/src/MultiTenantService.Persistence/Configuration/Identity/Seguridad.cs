@@ -12,10 +12,6 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityUser> modelBuilder)
             {
                 modelBuilder.ToTable("Users", "Seguridad");
-               // modelBuilder.Property.Entity<ApplicationUser>()
-               //.Property(u => u.DaysToExpire)
-               //.IsRequired(false);
-               //   builder.Property(u => u.Id).HasColumnName("UsuarioId");
             }
         }
 
@@ -24,7 +20,6 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityRole> modelBuilder)
             {
                 modelBuilder.ToTable("Roles", "Seguridad");
-                // modelBuilder.Property(r => r.Id).HasColumnName("RoleId");
             }
         }
 
@@ -33,8 +28,7 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityUserLogin<string>> modelBuilder)
             {
                 modelBuilder.ToTable("UserLogins", "Seguridad");
-                //  modelBuilder.Property(l => l.UserId).HasColumnName("UsuarioId");
-            }
+             }
         }
 
         public class CustomIdentityUserClaimsConfiguration : IEntityTypeConfiguration<IdentityUserClaim<string>>
@@ -42,8 +36,7 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityUserClaim<string>> modelBuilder)
             {
                 modelBuilder.ToTable("UserClaims", "Seguridad");
-                //  modelBuilder.Property(c => c.Id).HasColumnName("UserClaimId");
-            }
+             }
         }
 
         public class CustomIdentityUserTokenConfiguration : IEntityTypeConfiguration<IdentityUserToken<string>>
@@ -51,7 +44,6 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityUserToken<string>> modelBuilder)
             {
                 modelBuilder.ToTable("UserTokens", "Seguridad");
-                //  modelBuilder.Property(t => t.UserId).HasColumnName("UsuarioId");
             }
         }
 
@@ -60,7 +52,6 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityRoleClaim<string>> modelBuilder)
             {
                 modelBuilder.ToTable("RoleClaims", "Seguridad");
-                //  modelBuilder.Property(c => c.Id).HasColumnName("RoleClaimId");
             }
         }
 
@@ -69,8 +60,7 @@ namespace MultiTenantService.Persistence.Configuration.Identity
             public void Configure(EntityTypeBuilder<IdentityUserRole<string>> modelBuilder)
             {
                 modelBuilder.ToTable("UserRoles", "Seguridad");
-                //  modelBuilder.Property(l => l.UserId).HasColumnName("UsuarioId");
-            }
+             }
         }
 
     }
