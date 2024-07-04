@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using MultiTenantService.Application.Configuration;
+using MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrganizacion;
 using MultiTenantService.Application.Feactures.Auth;
 
 namespace MultiTenantService.Application
@@ -22,7 +23,7 @@ namespace MultiTenantService.Application
             services.AddSingleton(mapper.CreateMapper());
 
             #region Organizacion
-            //services.AddTransient<ICrearOrganizacion, CrearOrganizacion>();
+            services.AddTransient<ICrearOrganizacion, CrearOrganizacion>();
            
 
             #endregion

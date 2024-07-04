@@ -37,4 +37,12 @@
   <ItemGroup>
     <None Remove="DataBase\Comentario\Queries\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataBase\Organizacion\Commands\ActualizarOrganizacion\" />
+    <Folder Include="DataBase\Organizacion\Commands\EliminarOrganizacion\" />
+    <Folder Include="DataBase\Organizacion\Models\" />
+    <Folder Include="DataBase\Organizacion\Queries\ObtenerOrganizacionPorId\" />
+    <Folder Include="DataBase\Organizacion\Queries\ObtenerTodosLasOrganizaciones\" />
+  </ItemGroup>
 </Project>

@@ -15,12 +15,13 @@ namespace MultiTenantService.Persistence
 
             // Configuración de DbContext para Organización
             ConfigureDbContext<OrgDbContext>(services, configuration, databaseEngine, "OrgDb");
+            services.AddScoped<IOrgDbContext, OrgDbContext>();
 
             // Configuración de DbContext para Productos
             ConfigureDbContext<ProductoDbContext>(services, configuration, databaseEngine, "ProductDb");
+            services.AddScoped<IProductDbContext, ProductoDbContext>();
 
-
-           // services.AddScoped<IDataBaseService, DataBaseService>();
+            // services.AddScoped<IDataBaseService, DataBaseService>();
 
             return services;
         }

@@ -7,7 +7,6 @@ namespace MultiTenantService.Application.DataBase
 {
     public interface IDataBaseService
     {
-
         public DbSet<OrganizacionEntity> Organizacion { get; set; }
         public DbSet<UsuarioEntity> Usuario { get; set; }
         public DbSet<ProductoEntity> Producto { get; set; }
