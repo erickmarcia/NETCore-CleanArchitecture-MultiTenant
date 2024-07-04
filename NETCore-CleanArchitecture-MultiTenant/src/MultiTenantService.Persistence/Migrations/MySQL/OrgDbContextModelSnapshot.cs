@@ -2,63 +2,60 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MultiTenantService.Persistence.DataBase;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MultiTenantService.Persistence.Migrations.PostgreSQL
+namespace MultiTenantService.Persistence.Migrations.MySQL
 {
     [DbContext(typeof(OrgDbContext))]
-    [Migration("20240703230954_InitialCreateOrgDBForPostgreSQL")]
-    partial class InitialCreateOrgDBForPostgreSQL
+    partial class OrgDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("public")
                 .HasAnnotation("ProductVersion", "8.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("MultiTenantService.Domain.Entities.Organizacion.OrganizacionEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Activo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("FechaActualizacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTimeOffset>("FechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTimeOffset?>("FechaEliminacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("character varying(120)");
+                        .HasColumnType("varchar(120)");
 
                     b.Property<Guid?>("UsuarioActualizacionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UsuarioEliminacionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -69,7 +66,7 @@ namespace MultiTenantService.Persistence.Migrations.PostgreSQL
                         {
                             Id = 1,
                             Activo = true,
-                            FechaCreacion = new DateTimeOffset(new DateTime(2024, 7, 3, 17, 9, 54, 385, DateTimeKind.Unspecified).AddTicks(9983), new TimeSpan(0, -6, 0, 0, 0)),
+                            FechaCreacion = new DateTimeOffset(new DateTime(2024, 7, 4, 1, 59, 6, 497, DateTimeKind.Unspecified).AddTicks(8773), new TimeSpan(0, -6, 0, 0, 0)),
                             Nombre = "Organizacion1",
                             UsuarioId = new Guid("00000000-0000-0000-0000-000000000000")
                         });
@@ -79,43 +76,43 @@ namespace MultiTenantService.Persistence.Migrations.PostgreSQL
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Activo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("FechaActualizacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTimeOffset>("FechaCreacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTimeOffset?>("FechaEliminacion")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("OrganizacionId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("character varying(120)");
+                        .HasColumnType("varchar(120)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(120)
-                        .HasColumnType("character varying(120)");
+                        .HasColumnType("varchar(120)");
 
                     b.Property<Guid?>("UsuarioActualizacionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid?>("UsuarioEliminacionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid>("UsuarioId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
@@ -128,7 +125,7 @@ namespace MultiTenantService.Persistence.Migrations.PostgreSQL
                         {
                             Id = 1,
                             Activo = true,
-                            FechaCreacion = new DateTimeOffset(new DateTime(2024, 7, 3, 17, 9, 54, 386, DateTimeKind.Unspecified).AddTicks(116), new TimeSpan(0, -6, 0, 0, 0)),
+                            FechaCreacion = new DateTimeOffset(new DateTime(2024, 7, 4, 1, 59, 6, 497, DateTimeKind.Unspecified).AddTicks(8927), new TimeSpan(0, -6, 0, 0, 0)),
                             OrganizacionId = 1,
                             Password = "Admin.123",
                             UserName = "Admin",

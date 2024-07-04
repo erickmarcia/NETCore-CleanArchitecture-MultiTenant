@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MultiTenantService.Application.DataBase;
+using MultiTenantService.Application.Feactures.Auth;
 using MultiTenantService.Persistence.DataBase;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace MultiTenantService.Persistence
 {
@@ -19,9 +22,7 @@ namespace MultiTenantService.Persistence
 
             // Configuración de DbContext para Productos
             ConfigureDbContext<ProductoDbContext>(services, configuration, databaseEngine, "ProductDb");
-            services.AddScoped<IProductDbContext, ProductoDbContext>();
-
-            // services.AddScoped<IDataBaseService, DataBaseService>();
+            services.AddScoped<IProductoDbContext, ProductoDbContext>();
 
             return services;
         }
@@ -42,10 +43,17 @@ namespace MultiTenantService.Persistence
                     break;
 
                 case "MySQL":
-                    services.AddDbContext<TContext>(options =>
-                       options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-                    break;
+                                   services.AddDbContext<TContext>(options =>
+                                       options.UseMySql(connectionString, 
+                                       ServerVersion.AutoDetect(connectionString),
+                                        mySqlOptions =>
+                                        {
+                                            mySqlOptions.SchemaBehavior(MySqlSchemaBehavior.Ignore);
+                                        }
+                                       ));
+                  break;
 
+           
                 default:
                     throw new Exception($"Unsupported database engine: {databaseEngine}");
             }
