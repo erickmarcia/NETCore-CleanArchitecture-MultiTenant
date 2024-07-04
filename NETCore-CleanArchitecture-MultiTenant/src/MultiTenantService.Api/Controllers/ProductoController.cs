@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MultiTenantService.Application.DataBase.Productos.Commands.CrearProducto;
+using MultiTenantService.Application.Exceptions;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MultiTenantService.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/producto")]
+    [ApiController]
+    [TypeFilter(typeof(ExceptionManager))]
     public class ProductoController : Controller
     {
         // GET: api/values
@@ -26,10 +25,24 @@ namespace MultiTenantService.Api.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpPost()]
+        public async Task<IActionResult> Crear(
+         [FromBody] CrearProductoModel modelo,
+         [FromServices] ICrearProducto crear
+         )
         {
+            var data = await crear.Execute(modelo);
+            if (data.Success)
+            {
+                return StatusCode(StatusCodes.Status201Created, data);
+            }
+            else
+            {
+                return StatusCode(data.CodeId, data);
+            }
+
         }
+
 
         // PUT api/values/5
         [HttpPut("{id}")]

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MultiTenantService.Application.Configuration;
 using MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrganizacion;
+using MultiTenantService.Application.DataBase.Productos.Commands.CrearProducto;
 using MultiTenantService.Application.Feactures.Auth;
 
 namespace MultiTenantService.Application
@@ -24,28 +25,29 @@ namespace MultiTenantService.Application
 
             #region Organizacion
             services.AddTransient<ICrearOrganizacion, CrearOrganizacion>();
-           
+
 
             #endregion
 
             #region Usuarios
-         
+
 
             #endregion
 
             #region Productos
-          
+            services.AddTransient<ICrearProducto, CrearProducto>();
+
 
             #endregion
 
             #region Validators
-           // services.AddScoped<IValidator<CrearOrganizacionModel>, CrearOrganizacionValidator>();
-           
+            // services.AddScoped<IValidator<CrearOrganizacionModel>, CrearOrganizacionValidator>();
+
 
 
             #endregion
 
-         
+
             return services;
         }
     }

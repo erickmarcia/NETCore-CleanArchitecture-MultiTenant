@@ -10,12 +10,18 @@
     <Compile Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
     <Compile Remove="DataBase\Catalogos\Commands\**" />
     <Compile Remove="DataBase\Catalogos\Interfaces\**" />
+    <Compile Remove="DataBase\Productos\Commands\ActualizarOrganizacion\**" />
+    <Compile Remove="DataBase\Productos\Commands\EliminarOrganizacion\**" />
     <EmbeddedResource Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
     <EmbeddedResource Remove="DataBase\Catalogos\Commands\**" />
     <EmbeddedResource Remove="DataBase\Catalogos\Interfaces\**" />
+    <EmbeddedResource Remove="DataBase\Productos\Commands\ActualizarOrganizacion\**" />
+    <EmbeddedResource Remove="DataBase\Productos\Commands\EliminarOrganizacion\**" />
     <None Remove="DataBase\Beneficios\Commands\NewFolder1\**" />
     <None Remove="DataBase\Catalogos\Commands\**" />
     <None Remove="DataBase\Catalogos\Interfaces\**" />
+    <None Remove="DataBase\Productos\Commands\ActualizarOrganizacion\**" />
+    <None Remove="DataBase\Productos\Commands\EliminarOrganizacion\**" />
   </ItemGroup>
 
   <ItemGroup>

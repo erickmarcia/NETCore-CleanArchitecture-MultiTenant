@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using MultiTenantService.Application.Exceptions;
 using MultiTenantService.Application.Feactures.Auth;
 using MultiTenantService.Common;
-using MultiTenantService.Domain.Entities.Organizacion;
+using MultiTenantService.Domain.Entities.Producto;
 using MultiTenantService.Domain.Models;
 
-namespace MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrganizacion
+namespace MultiTenantService.Application.DataBase.Productos.Commands.CrearProducto
 {
-    public class CrearOrganizacion : ICrearOrganizacion
+    public class CrearProducto : ICrearProducto
     {
-        private readonly IOrgDbContext _dataBaseService;
+        private readonly IProductoDbContext _dataBaseService;
         private readonly IMapper _mapper;
         private readonly IBaseService _baseService;
 
-        public CrearOrganizacion(IOrgDbContext dataBaseService, IMapper mapper,
+        public CrearProducto(IProductoDbContext dataBaseService, IMapper mapper,
             IBaseService baseService)
         {
             _dataBaseService = dataBaseService;
@@ -22,7 +22,7 @@ namespace MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrg
             _baseService = baseService;
         }
 
-        public async Task<BaseResponseModel> Execute(CrearOrganizacionModel modelo)
+        public async Task<BaseResponseModel> Execute(CrearProductoModel modelo)
         {
             BaseResponseModel mensaje = new BaseResponseModel();
             List<object> errores = new List<object>();
@@ -30,10 +30,10 @@ namespace MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrg
             // Obtener el UsuarioId del usuario autenticado
             // var usuarioId = _baseService.ObtenerIdUsuarioActual();
 
-            var organizacion = await _dataBaseService.Organizacion.AsNoTracking().FirstOrDefaultAsync(x => x.Nombre == modelo.Nombre);
-            if (organizacion != null)
+            var producto = await _dataBaseService.Producto.AsNoTracking().FirstOrDefaultAsync(x => x.Nombre == modelo.Nombre);
+            if (producto != null)
             {
-                errores.Add(new CustomValidationFailure(Constants.Organizacion, "Nombre", string.Format(ResponseMessages.AlreadyExists.Message, "Nombre: " + modelo.Nombre), modelo.Nombre));
+                errores.Add(new CustomValidationFailure(Constants.Productos, "Nombre", string.Format(ResponseMessages.AlreadyExists.Message, "Nombre: " + modelo.Nombre), modelo.Nombre));
             }
 
             if (errores.Any())
@@ -45,18 +45,16 @@ namespace MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrg
                 return mensaje;
             }
 
-            var entity = _mapper.Map<OrganizacionEntity>(modelo);
-            //entity.UsuarioId = usuarioId;
-            entity.FechaCreacion = DateTime.UtcNow.ToUniversalTime();
-
-            await _dataBaseService.Organizacion.AddAsync(entity);
+            var entity = _mapper.Map<ProductoEntity>(modelo);
+            
+            await _dataBaseService.Producto.AddAsync(entity);
 
            
             if (await _dataBaseService.SaveAsync())
             {
                 mensaje.Success = true;
                 mensaje.CodeId = ResponseMessages.Status201Created.Id;
-                mensaje.Message = string.Format(Constants.RecursoCreado, Constants.Organizacion);
+                mensaje.Message = string.Format(Constants.RecursoCreado, Constants.Productos);
                 mensaje.Data = true;
             }
             return mensaje;

@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MultiTenantService.Application.DataBase.Organizacion.Commands.CrearOrganizacion;
+using MultiTenantService.Application.DataBase.Productos.Commands.CrearProducto;
 using MultiTenantService.Domain.Entities.Organizacion;
+using MultiTenantService.Domain.Entities.Producto;
 
 namespace MultiTenantService.Application.Configuration
 {
@@ -17,6 +19,10 @@ namespace MultiTenantService.Application.Configuration
 
             #endregion
 
+            #region Productos
+
+            CreateMap<ProductoEntity, CrearProductoModel>().ReverseMap();
+            #endregion
         }
     }
 }
